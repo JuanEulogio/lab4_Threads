@@ -1,18 +1,14 @@
 package com.cs407.lab4milestone1;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
     private Button startButton;
     boolean stopThread;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Button stopButton= findViewById(R.id.stopButton);
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -34,16 +29,13 @@ public class MainActivity extends AppCompatActivity {
                 stopDownload(v);
             }
         });
-
     }
-
     public class ExampleRunnable implements Runnable {
         @Override
         public void run(){
              mockFileDownloader();
         }
     }
-
     public void mockFileDownloader() {
         runOnUiThread(new Runnable()  {
             @Override
@@ -85,13 +77,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void startDownload (View view){
         stopThread=false;
         ExampleRunnable runnable = new ExampleRunnable ();
         new Thread(runnable).start();
     }
-
     public void stopDownload (View view) {
         stopThread = true;
     }
